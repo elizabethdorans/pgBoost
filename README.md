@@ -5,14 +5,14 @@ Download and run the script pgBoost.R on a user-supplied data frame of linking s
 ## Arguments
 
 - data_file: tab-separated file in which each row represents a candidate link. Should contain the following columns (but can include additional columns, which will be ignored):
-  1) Index columns (e.g. "SNP", "peak", "gene"): columns which identify a candidate link. Column names _must_ be identical to the index columns in the training_file. There must be at least one index column, and each candidate link must be uniquely identified by the combination of index columns.
-  2) Predictors: columns which contain features to be included in the model. Column names _must_ be identical to those provided in the predictor_file (see below).
-  3) Leave-one-out column: _one_ column denoting the chromosome of the focal link (see below).
+  - Index columns (e.g. "SNP", "peak", "gene"): columns which identify a candidate link. Column names _must_ be identical to the index columns in the training_file. There must be at least one index column, and each candidate link must be uniquely identified by the combination of index columns.
+  - Predictors: columns which contain features to be included in the model. Column names _must_ be identical to those provided in the predictor_file (see below).
+  - Leave-one-out column: _one_ column denoting the chromosome of the focal link (see below).
  
 - training_file: tab-separated file in which each row represents a link in the training data. Should contain the following columns:
-  1. Index columns (e.g. "SNP", "peak", "gene"): columns which identify a candidate link. Column names _must_ be identical to the index columns in the data_file. There must be at least one index column, and each candidate link must be uniquely identified by the combination of index columns.
+  - Index columns (e.g. "SNP", "peak", "gene"): columns which identify a candidate link. Column names _must_ be identical to the index columns in the data_file. There must be at least one index column, and each candidate link must be uniquely identified by the combination of index columns.
      - The training data file can include candidate links that are not in the data file (these links will be discarded).
-  2. "positive": a binary column (0/1) indicating whether a link is a positive (1) or negative (0) training instance.
+  - "positive": a binary column (0/1) indicating whether a link is a positive (1) or negative (0) training instance.
  
 - predictor_file: text file with one predictor name per line (corresponding to the name of a column in data_file).
 
