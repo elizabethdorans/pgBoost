@@ -1,0 +1,1 @@
+Download and run the script pgBoost.R on a user-supplied data frame of linking scores and distance-based features to train a gradient boosting model and generate predictions using a leave-one-chromosome-out framework.
