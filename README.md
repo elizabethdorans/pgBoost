@@ -8,12 +8,13 @@ Rscript pgBoostR
 
 ## Arguments
 
-Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
---- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
-Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
+Argument | Format | Description |
+--- | --- | --- |
+__--data_file__ | dataframe (tab-separated) | A data frame of candidate links (rows) x linking features (columns). Must contain all columns specified in __predictor_file__ _and_ the column specified in __LOO_colname__. Must also contain one or more columns which uniquely index candidate links (e.g. "SNP", "peak", "gene"). |
+--- | --- | --- |
 
 - data_file (tab-separated): candidate links (rows) x features (columns)
-  - Should contain the following columns (additional columns will be ignored):
+  - 
     - Index columns (_at least_ 1): this column / combination of columns (e.g. "SNP", "peak", "gene") should uniquely identify each candidate link (row names will be ignored). **_Must_ match columns in training_file.**
     - Predictors (_at least_ 1): features to be included in the model. **_Must_ match those provided in predictor_file (see below).**
     - Leave-one-out column (_exactly_ 1): column used to group links for the leave-one-chromosome-out approach (see below).
