@@ -4,10 +4,10 @@ Download and run the script pgBoost.R on a user-supplied data frame of linking s
 
 ## Arguments
 
-- data_file: tab-separated file in which each row represents a candidate link. Should contain the following columns (but can include additional columns, which will be ignored):
-  - Index columns (e.g. "SNP", "peak", "gene"): columns which identify a candidate link. Column names _must_ be identical to the index columns in the training_file. There must be at least one index column, and each candidate link must be uniquely identified by the combination of index columns.
-  - Predictors: columns which contain features to be included in the model. Column names _must_ be identical to those provided in the predictor_file (see below).
-  - Leave-one-out column: _one_ column denoting the chromosome of the focal link (see below).
+- data_file: tab-separated file in which each row represents a candidate link. Should contain the following columns (additional columns will be ignored):
+  - Index columns (at least 1): this column(s) should uniquely identify each candidate link (e.g. "SNP", "peak", "gene"). Column names _must_ match columns in training_file. 
+  - Predictors (at least 1): features to be included in the model. Column names _must_ match those provided in predictor_file (see below).
+  - Leave-one-out column (exactly 1): chromosome of the focal link (see below).
  
 - training_file: tab-separated file in which each row represents a link in the training data. Should contain the following columns:
   - Index columns (e.g. "SNP", "peak", "gene"): columns which identify a candidate link. Column names _must_ be identical to the index columns in the data_file. There must be at least one index column, and each candidate link must be uniquely identified by the combination of index columns.
