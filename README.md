@@ -9,7 +9,6 @@ Rscript pgBoostR
 ## Arguments
 
 Argument | Description |
---- | --- |
 __data_file__ | A tab-separated data frame of candidate links (rows) x linking attributes (columns). Must contain all columns specified in __predictor_file__ _and_ the column specified in __LOO_colname__. Must also contain one or more columns which uniquely index candidate links (e.g. "SNP", "peak", "gene"). Additional columns will be ignored. |
 --- | --- |
 __training_file__ | A tab-separated data frame of training links (rows) x training link attributes (columns). Must contain one column named "positive" which provides a binary indicator (0/1) of whether a link is a positive (1) or negative (0) training instance. _All_ remaining columns must match columns in __data_file__ which uniquely index candidate links (e.g. "SNP", "peak", "gene"). |
