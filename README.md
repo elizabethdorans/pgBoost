@@ -8,28 +8,17 @@ Rscript pgBoostR
 
 ## Arguments
 
-Argument | Format | Description |
---- | --- | --- |
-__--data_file__ | dataframe (tab-separated) | A data frame of candidate links (rows) x linking features (columns). Must contain all columns specified in __predictor_file__ _and_ the column specified in __LOO_colname__. Must also contain one or more columns which uniquely index candidate links (e.g. "SNP", "peak", "gene"). |
---- | --- | --- |
-
-- data_file (tab-separated): candidate links (rows) x features (columns)
-  - 
-    - Index columns (_at least_ 1): this column / combination of columns (e.g. "SNP", "peak", "gene") should uniquely identify each candidate link (row names will be ignored). **_Must_ match columns in training_file.**
-    - Predictors (_at least_ 1): features to be included in the model. **_Must_ match those provided in predictor_file (see below).**
-    - Leave-one-out column (_exactly_ 1): column used to group links for the leave-one-chromosome-out approach (see below).
- 
-- training_file (tab-separated): training links (rows) x training classification (column).
-  - Should contain the following columns:
-    - Index columns (see above): this column / combination of columns (e.g. "SNP", "peak", "gene") should uniquely identify each candidate link (row names will be ignored). **_Must_ match columns in data_file.** Links not included in data_file will be ignored.
-  - "positive": a binary indicator column (0/1) indicating whether a link is a positive (1) or negative (0) training instance.
- 
-
- 
-- predictor_file: text file with one predictor name per line (corresponding to the name of a column in data_file).
-
-- drop_duplicates_file: text file specifying columns across which to drop duplicate instances during training (one column name per line). Any duplicate training instances containing the exact same value in these columns as another instance (and also identically classified as positive/negative) will be dropped.
-
-- LOO_colname: name of the column denoting the chromosome of the focal link - e.g. "chr" (default), "CHR", "chrom", "chromosome" - used to conduct the leave-one-chromosome-out training procedure.
-
-- outfile: name of file where pgBoost predictions will be saved as a tab-delimited file with all index columns plus a "pgBoost" column.
+Argument | Description |
+--- | --- |
+__data_file__ | A tab-separated data frame of candidate links (rows) x linking attributes (columns). Must contain all columns specified in __predictor_file__ _and_ the column specified in __LOO_colname__. Must also contain one or more columns which uniquely index candidate links (e.g. "SNP", "peak", "gene"). Additional columns will be ignored. |
+--- | --- |
+__training_file__ | A tab-separated data frame of training links (rows) x training link attributes (columns). Must contain one column named "positive" which provides a binary indicator (0/1) of whether a link is a positive (1) or negative (0) training instance. _All_ remaining columns must match columns in __data_file__ which uniquely index candidate links (e.g. "SNP", "peak", "gene"). |
+--- | --- |
+__predictor_file__ | A line-delimited text file containing the names of predictors to be used in the model. Must match columns in __data_file__. |
+--- | --- |
+__drop_duplicates_file__ | (OPTIONAL) A line-delimited text file containing the names of columns used to drop duplicate instances during training. If more than one training instance contains the same values across these columns (and the same classification as positive/negative), only one instance will be retained. Must match columns in __data_file__. If not supplied, pgBoost will not check for duplicate training instances. |
+--- | --- |
+__LOO_colname__ | Name of the column used to group links for the leave-one-chromosome-out framework, e.g. "chr" (default), "CHR", "chrom", "chromosome". |
+--- | --- |
+__outfile__ | Name of file where pgBoost predictions will be saved. File will be tab-delimited and will contain columns indexing candidate links (see __data_file__ and __training_file__ descriptions) plus a "pgBoost" column containing predicted scores. |
+ --- | --- |
