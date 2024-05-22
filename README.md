@@ -1,18 +1,29 @@
 # pgBoost.R
 
-Download and run the script pgBoost.R on a user-supplied data frame of linking scores and distance-based features to train a gradient boosting model and generate predictions using a leave-one-chromosome-out framework.
+The provided script pgBoost.R takes as input a data set of candidate regulatory links x linking scores and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework).
+
+Example command: 
+
+Rscript pgBoostR
 
 ## Arguments
 
-- data_file: tab-separated file in which each row represents a candidate link. Should contain the following columns (additional columns will be ignored):
-  - Index columns (at least 1): this column(s) should uniquely identify each candidate link (e.g. "SNP", "peak", "gene"). Column names _must_ match columns in training_file. 
-  - Predictors (at least 1): features to be included in the model. Column names _must_ match those provided in predictor_file (see below).
-  - Leave-one-out column (exactly 1): chromosome of the focal link (see below).
+Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
+--- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
+Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
+
+- data_file (tab-separated): candidate links (rows) x features (columns)
+  - Should contain the following columns (additional columns will be ignored):
+    - Index columns (_at least_ 1): this column / combination of columns (e.g. "SNP", "peak", "gene") should uniquely identify each candidate link (row names will be ignored). **_Must_ match columns in training_file.**
+    - Predictors (_at least_ 1): features to be included in the model. **_Must_ match those provided in predictor_file (see below).**
+    - Leave-one-out column (_exactly_ 1): column used to group links for the leave-one-chromosome-out approach (see below).
  
-- training_file: tab-separated file in which each row represents a link in the training data. Should contain the following columns:
-  - Index columns (e.g. "SNP", "peak", "gene"): columns which identify a candidate link. Column names _must_ be identical to the index columns in the data_file. There must be at least one index column, and each candidate link must be uniquely identified by the combination of index columns.
-     - The training data file can include candidate links that are not in the data file (these links will be discarded).
-  - "positive": a binary column (0/1) indicating whether a link is a positive (1) or negative (0) training instance.
+- training_file (tab-separated): training links (rows) x training classification (column).
+  - Should contain the following columns:
+    - Index columns (see above): this column / combination of columns (e.g. "SNP", "peak", "gene") should uniquely identify each candidate link (row names will be ignored). **_Must_ match columns in data_file.** Links not included in data_file will be ignored.
+  - "positive": a binary indicator column (0/1) indicating whether a link is a positive (1) or negative (0) training instance.
+ 
+
  
 - predictor_file: text file with one predictor name per line (corresponding to the name of a column in data_file).
 
