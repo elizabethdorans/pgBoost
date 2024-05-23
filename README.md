@@ -1,6 +1,6 @@
 # pgBoost.R
 
-The provided script pgBoost.R takes as input a data set of candidate regulatory links x linking scores and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework).
+The provided script pgBoost.R takes as input a data set of candidate regulatory links x linking scores and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework). This repo will be updated as pgBoost is developed into a software package with additional functionality.
 
 ### Arguments
 
