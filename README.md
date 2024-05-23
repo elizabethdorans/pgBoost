@@ -19,11 +19,6 @@ Rscript pgBoost.R --data_file data.tsv --training_file training.tsv --predictor_
 
 ### Output
 
-pgBoost.R will output a file in the following format:
-```r
-out <- read.csv(outfile.txt, sep = "\t")
-head(out)
-```
-The output file will include:
+The pgBoost output file will include:
 - All index columns uniquely identifying candidate links (e.g. "SNP", "peak", "gene").
 - __pgBoost__: a column containing pgBoost predictions.
