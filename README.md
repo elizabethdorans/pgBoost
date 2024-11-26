@@ -8,7 +8,7 @@ The provided script pgBoost.R takes as input a data set of candidate gene regula
 
 ### Arguments
 
-Rscript pgBoost.R --data_file data.tsv --training_file training.tsv --predictor_file predictors.txt --drop_duplicates_file drop_duplicates.txt --LOO_colname "chrom" --outfile outfile.tsv
+Rscript pgBoost.R --data_file data.tsv --training_file training.tsv --predictor_file predictors.txt --drop_duplicates_file drop_duplicates.txt
 
 | Argument | Description |
 | -------- | ----------- |
