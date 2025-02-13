@@ -10,6 +10,8 @@ The provided script pgBoost.R takes as input a data set of candidate gene regula
 
 Rscript pgBoost.R --data_file data.tsv --training_file training.tsv --predictor_file predictors.txt --drop_duplicates_file drop_duplicates.txt
 
+Example input files are provided in the folder `example_input_files/`.
+
 | Argument | Description |
 | -------- | ----------- |
 | __--data_file__ | A tab-separated data frame of candidate links (rows) x linking attributes (columns). Must contain all columns specified in __predictor_file__ _and_ the column specified in __LOO_colname__. Must also contain one or more columns which uniquely index candidate links (e.g. "SNP", "peak", "gene"). Additional columns will be ignored. |
@@ -24,3 +26,5 @@ Rscript pgBoost.R --data_file data.tsv --training_file training.tsv --predictor_
 The pgBoost output file will include:
 - All index columns uniquely identifying candidate links (e.g. "SNP", "peak", "gene").
 - __pgBoost__: a column containing pgBoost predictions.
+
+An example output file is provided in the folder `example_output_files/`.
