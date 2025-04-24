@@ -1,4 +1,4 @@
-# pgBoost.R
+# pgBoost.R [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
 
 The provided script pgBoost.R takes as input a data set of candidate gene regulatory links x link attributes and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework). This repo will be updated as pgBoost is developed into a software package with additional functionality.
 
