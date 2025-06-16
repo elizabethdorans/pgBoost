@@ -1,8 +1,8 @@
 # pgBoost
 
-pgBoost is an integrative modeling framework that trains a non-linear combination of single-cell multiome peak-gene linking scores and genomic distance-based features on fine-mapped eQTL data to assign a probabilistic score to candidate SNP-gene links (see [Dorans et al. 2025 Nature Genetics](https://www.nature.com/articles/s41588-025-02220-3)).
+pgBoost is an integrative modeling framework that trains a non-linear combination of single-cell multiome peak-gene linking scores and genomic distance-based features on fine-mapped eQTL data to predict regulatory SNP-gene links (see [Dorans et al. 2025 Nature Genetics](https://www.nature.com/articles/s41588-025-02220-3)).
 
-See below for the steps to generate pgBoost features and run pgBoost!
+The pgBoost framework requires single-cell mutiome (RNA-seq + ATAC-seq) data as input. The algorithm will output probabilistic scores for candidate SNP-gene links. See below for the steps to generate pgBoost features from single-cell multiome data and run pgBoost!
 
 <div align="center">
 <img src="https://github.com/elizabethdorans/pgBoost/blob/main/figs/overview_method.jpg" width=75%>
