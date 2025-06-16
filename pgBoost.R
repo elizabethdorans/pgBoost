@@ -146,7 +146,7 @@ for (chromosome in chromosomes) {
     prediction_idx = which(full_data[,LOO_colname] == chromosome)
     prediction_features = full_data[prediction_idx, predictors]
     pgBoost_probability = predict(bstSparse, as.matrix(prediction_features))
-    chrom_predictions = cbind(full_data[prediction_idx, index_cols], pgBoost)
+    chrom_predictions = cbind(full_data[prediction_idx, index_cols], pgBoost_probability)
     
     # Add predictions from focal chromosome to full set of predictions
     predictions = rbind(predictions, chrom_predictions)
