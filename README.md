@@ -13,7 +13,7 @@ See below for the steps to generate pgBoost features and run pgBoost!
 
 ## Step 1: Generate constituent scores
 
-Tutorial code to generate linking scores from constituent methods has been provided [here](https://github.com/elizabethdorans/E2G_Method_Tutorials/). To run pgBoost, scores must be generated for **Signac, SCENT, and Cicero**. 
+Tutorial code to generate linking scores from constituent methods has been provided [here](https://github.com/elizabethdorans/E2G_Method_Tutorials/). To run pgBoost, scores must be generated for [Signac](https://github.com/elizabethdorans/E2G_Method_Tutorials/tree/main/Signac), [SCENT](https://github.com/elizabethdorans/E2G_Method_Tutorials/tree/main/SCENT), and [Cicero](https://github.com/elizabethdorans/E2G_Method_Tutorials/tree/main/Cicero). 
 
 <ins>NOTE</ins>: 
 - When running the SCENT_algorithm() function, use the argument boot = FALSE to skip the p-value calculation (not needed for pgBoost input) and save time and computational resources.
