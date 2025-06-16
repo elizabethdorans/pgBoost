@@ -1,30 +1,46 @@
-# pgBoost.R [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
+# pgBoost
 
-The provided script pgBoost.R takes as input a data set of candidate gene regulatory links x link attributes and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework). This repo will be updated as pgBoost is developed into a software package with additional functionality.
+pgBoost is an integrative modeling framework that trains a non-linear combination of single-cell multiome peak-gene linking scores and genomic distance-based features on fine-mapped eQTL data to assign a probabilistic score to candidate SNP-gene links. 
+
+The provided script pgBoost.R takes as input a data set of candidate gene regulatory links x link attributes (scores from constituent peak-gene linking methods, distance-based features) and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework).
+
+See below for the steps to generate linking scores from constituent peak-gene linking methods and pgBoost.
 
 <div align="center">
 <img src="https://github.com/elizabethdorans/pgBoost/blob/main/figs/overview_method.jpg" width=75%>
 </div>
 
+
+## Step 1: Generate constituent scores
+
+Tutorial code to generate linking scores from constituent methods has been provided at https://github.com/elizabethdorans/E2G_Method_Tutorials/. To run pgBoost, scores must be generated for **Signac, SCENT, and Cicero**. (NOTE: **do not** perform the optional "post-processing for IGVF portal" step).
+
+## Step 2: Create pgBoost input files
+
+Tutorial code to generate pgBoost input files from constituent scores has been provided in `prepare_pgBoost_features.ipynb`. This notebook will generate distance-based features and output the --data_file, --predictor_file, and --drop_duplicates_file inputs to the pgBoost script (see below).
+
+## pgBoost.R [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
+
 ### Arguments
 
-Rscript pgBoost.R --data_file data.tsv --training_file training.tsv --predictor_file predictors.txt --drop_duplicates_file drop_duplicates.txt
+Rscript pgBoost.R --data_file data.tsv --training_file `resources/training_data.tsv.gz` --predictor_file predictors.txt --drop_duplicates_file drop_duplicates.txt
 
 Example input files are provided in the folder `example_input_files/`.
 
 | Argument | Description |
 | -------- | ----------- |
-| __--data_file__ | A tab-separated data frame of candidate links (rows) x linking attributes (columns). Must contain all columns specified in __predictor_file__ _and_ the column specified in __LOO_colname__. Must also contain one or more columns which uniquely index candidate links (e.g. "SNP", "peak", "gene"). Additional columns will be ignored. |
-| __--training_file__ | A tab-separated data frame of training links (rows) x training link attributes (columns). Must contain one column named "positive" which provides a binary indicator (0/1) of whether a link is a positive (1) or negative (0) training instance. Must contain columns which uniquely identify candidate links (e.g. "SNP", "peak", "gene") matching those in __data_file__. |
-| __--predictor_file__ | A line-delimited text file containing names of columns to use as predictors. Must match columns in __data_file__. |
-| __--drop_duplicates_file__ | (OPTIONAL) A line-delimited text file containing the names of columns used to drop duplicate instances during training. If more than one training instance contains the same values across these columns (and the same classification as positive/negative), only one instance will be retained. Must match columns in __data_file__. If not supplied, pgBoost will not check for duplicate training instances. |
-| __--LOO_colname__ | Name of the column used to group links for the leave-one-chromosome-out framework, e.g. "chr" (default), "CHR", "chrom", "chromosome". |
+| __--data_file__ | A tab-separated data frame of candidate links (rows) x linking attributes (columns). Must contain all columns specified in __predictor_file__ _and_ the column specified in __LOO_colname__. Must also contain one or more columns which uniquely index candidate links (e.g. "SNP", "peak", "gene"). Additional columns will be ignored. `prepare_pgBoost_features.ipynb` will generate `data.tsv`. |
+| __--training_file__ | A tab-separated data frame of training links (rows) x training link attributes (columns). Must contain one column named "positive" which provides a binary indicator (0/1) of whether a link is a positive (1) or negative (0) training instance. Must contain columns which uniquely identify candidate links (e.g. "SNP", "peak", "gene") matching those in __data_file__. The pgBoost training set has been provided in `resources/training_data.tsv.gz`. |
+| __--predictor_file__ | A line-delimited text file containing names of columns to use as predictors. Must match columns in __data_file__. `prepare_pgBoost_features.ipynb` will generate `predictors.txt`. |
+| __--drop_duplicates_file__ | (OPTIONAL) A line-delimited text file containing the names of columns used to drop duplicate instances during training. If more than one training instance contains the same values across these columns (and the same classification as positive/negative), only one instance will be retained. Must match columns in __data_file__. If not supplied, pgBoost will not check for duplicate training instances. `prepare_pgBoost_features.ipynb` will generate `drop_duplicates.txt`. |
+| __--LOO_colname__ | Name of the column used to group links for the leave-one-chromosome-out framework, e.g. "chr" (default), "CHR", "chrom", "chromosome". `prepare_pgBoost_features.ipynb` will generate the "chr" column. |
 | __--outfile__ | Name of tab-delimited file where pgBoost predictions will be saved (default "pgboost_predictions.tsv"). |
 
 ### Output
 
 The pgBoost output file will include:
 - All index columns uniquely identifying candidate links (e.g. "SNP", "peak", "gene").
-- __pgBoost__: a column containing pgBoost predictions.
+- __pgBoost_probability__: a column containing pgBoost predictions (probabilities generated by the gradient boosting classification algorithm).
+- __pgBoost_percentile__: a column giving percentile ranks of pgBoost probabilisties (we recommend using a threshold of pgBoost_percentile >0.95 to define true links; see Dorans et al. Nature Genetics 2025).
 
 An example output file is provided in the folder `example_output_files/`.
