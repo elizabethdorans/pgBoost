@@ -1,10 +1,10 @@
 # pgBoost
 
-pgBoost is an integrative modeling framework that trains a non-linear combination of single-cell multiome peak-gene linking scores and genomic distance-based features on fine-mapped eQTL data to assign a probabilistic score to candidate SNP-gene links. 
+pgBoost is an integrative modeling framework that trains a non-linear combination of single-cell multiome peak-gene linking scores and genomic distance-based features on fine-mapped eQTL data to assign a probabilistic score to candidate SNP-gene links (see associatied publication, Dorans et al. 2025 Nature Genetics, [here](https://www.nature.com/articles/s41588-025-02220-3).
 
-The provided script pgBoost.R takes as input a data set of candidate gene regulatory links x link attributes (scores from constituent peak-gene linking methods, distance-based features) and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework).
+pgBoost takes as input a data set of candidate SNP-gene regulatory links x link attributes (peak-gene correlation-based scores from constituent linking methods, distance-based features) and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework).
 
-See below for the steps to generate linking scores from constituent peak-gene linking methods and pgBoost.
+See below for the steps to generate pgBoost features and run pgBoost!
 
 <div align="center">
 <img src="https://github.com/elizabethdorans/pgBoost/blob/main/figs/overview_method.jpg" width=75%>
@@ -13,11 +13,15 @@ See below for the steps to generate linking scores from constituent peak-gene li
 
 ## Step 1: Generate constituent scores
 
-Tutorial code to generate linking scores from constituent methods has been provided at https://github.com/elizabethdorans/E2G_Method_Tutorials/. To run pgBoost, scores must be generated for **Signac, SCENT, and Cicero**. (NOTE: **do not** perform the optional "post-processing for IGVF portal" step).
+Tutorial code to generate linking scores from constituent methods has been provided [here](https://github.com/elizabethdorans/E2G_Method_Tutorials/). To run pgBoost, scores must be generated for **Signac, SCENT, and Cicero**. 
+
+<ins>NOTE</ins>: 
+- When running the SCENT_algorithm() function, use the argument boot = FALSE to skip the p-value calculation (not needed for pgBoost input) and save time and computational resources.
+- __Do not__ perform the optional "post-processing for IGVF portal" step for any of the consituent score files.
 
 ## Step 2: Create pgBoost input files
 
-Tutorial code to generate pgBoost input files from constituent scores has been provided in `prepare_pgBoost_features.ipynb`. This notebook will generate distance-based features and output the --data_file, --predictor_file, and --drop_duplicates_file inputs to the pgBoost script (see below).
+Tutorial code to generate pgBoost input files from constituent scores has been provided in `prepare_pgBoost_features.ipynb`. This notebook will generate distance-based features and output the --data_file, --predictor_file, and --drop_duplicates_file inputs needed for the pgBoost script (see below).
 
 ## pgBoost.R [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
 
