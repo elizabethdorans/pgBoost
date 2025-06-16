@@ -1,3 +1,8 @@
-signac_score_LCL_shareseq
-scent_beta_LCL_shareseq
-cicero_coaccess_LCL_shareseq
+signac_Chen_GM12878
+scent_Chen_GM12878
+cicero_Chen_GM12878
+signac_Xu_K562
+scent_Xu_K562
+cicero_Xu_K562
+snp_gene_distance
+closest_tss
