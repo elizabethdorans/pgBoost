@@ -145,13 +145,15 @@ for (chromosome in chromosomes) {
     # Generate predictions for candidate links on the focal chromosome
     prediction_idx = which(full_data[,LOO_colname] == chromosome)
     prediction_features = full_data[prediction_idx, predictors]
-    pgBoost = predict(bstSparse, as.matrix(prediction_features))
+    pgBoost_probability = predict(bstSparse, as.matrix(prediction_features))
     chrom_predictions = cbind(full_data[prediction_idx, index_cols], pgBoost)
     
     # Add predictions from focal chromosome to full set of predictions
     predictions = rbind(predictions, chrom_predictions)
     writeLines(sprintf("Number of scored links: %s\n", nrow(chrom_predictions)))
 }
+
+predictions = predictions %>% mutate(pgBoost_percentile = percent_rank(predictions$pgBoost_probability))
 
 # Save predictions to specified outfile name
 write.table(predictions, outfile, sep = "\t", row.names = F, quote = F)
