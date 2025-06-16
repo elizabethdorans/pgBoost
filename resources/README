@@ -1,5 +1,5 @@
 training_data.tsv.gz: positive and negative training instances derived from fine-mapped GTEx eQTL (see https://www.finucanelab.org/data 'GTEx fine-mapping results'). Positive SNP-gene pairs are defined by PIP > 0.2, and negative SNP-gene pairs are defined by PIP < 0.01.
 
-SNPs.bed.gz: 1kG SNPs with MAF count > 5.
+SNPs.bed.gz: 1000 Genomes Project SNPs with MAF count > 5.
 
-TSS.txt.gz: TSS coordinates for genes in gene universe (derived from https://github.com/EngreitzLab/CRISPR_comparison/tree/main/resources/genome_annotations).
+TSS.txt.gz: TSS coordinates for genes in gene universe (obtained from https://github.com/EngreitzLab/CRISPR_comparison/tree/main/resources/genome_annotations).
