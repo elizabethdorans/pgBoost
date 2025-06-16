@@ -23,11 +23,9 @@ After constituent scores have been generated, `prepare_pgBoost_features.ipynb` c
 
 ## pgBoost.R [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
 
-### Arguments
-
 pgBoost takes as input a data set of candidate SNP-gene regulatory links x link attributes (peak-gene correlation-based scores from constituent linking methods, distance-based features) and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework).
 
-Example command:
+### Arguments
 
 Rscript pgBoost.R --data_file data.tsv --training_file `resources/training_data.tsv.gz` --predictor_file predictors.txt --drop_duplicates_file drop_duplicates.txt
 
