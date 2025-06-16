@@ -21,7 +21,7 @@ Tutorial code to generate linking scores from constituent methods has been provi
 
 ## Step 2: Create pgBoost input files
 
-Tutorial code to generate pgBoost input files from constituent scores has been provided in `prepare_pgBoost_features.ipynb`. This notebook will generate distance-based features and output the --data_file, --predictor_file, and --drop_duplicates_file inputs needed for the pgBoost script (see below).
+After constituent scores have been generated, `prepare_pgBoost_features.ipynb` can be used to generate pgBoost input files. This notebook will generate distance-based features and output the --data_file, --predictor_file, and --drop_duplicates_file inputs needed for the pgBoost script (see below).
 
 ## pgBoost.R [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
 
