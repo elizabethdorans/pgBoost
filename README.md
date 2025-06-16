@@ -2,8 +2,6 @@
 
 pgBoost is an integrative modeling framework that trains a non-linear combination of single-cell multiome peak-gene linking scores and genomic distance-based features on fine-mapped eQTL data to assign a probabilistic score to candidate SNP-gene links (see [Dorans et al. 2025 Nature Genetics](https://www.nature.com/articles/s41588-025-02220-3)).
 
-pgBoost takes as input a data set of candidate SNP-gene regulatory links x link attributes (peak-gene correlation-based scores from constituent linking methods, distance-based features) and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework).
-
 See below for the steps to generate pgBoost features and run pgBoost!
 
 <div align="center">
@@ -26,6 +24,10 @@ After constituent scores have been generated, `prepare_pgBoost_features.ipynb` c
 ## pgBoost.R [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
 
 ### Arguments
+
+pgBoost takes as input a data set of candidate SNP-gene regulatory links x link attributes (peak-gene correlation-based scores from constituent linking methods, distance-based features) and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework).
+
+Example command:
 
 Rscript pgBoost.R --data_file data.tsv --training_file `resources/training_data.tsv.gz` --predictor_file predictors.txt --drop_duplicates_file drop_duplicates.txt
 
