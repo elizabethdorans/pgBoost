@@ -1,13 +1,17 @@
 # pgBoost
 
-pgBoost is an integrative modeling framework that trains a non-linear combination of single-cell multiome peak-gene linking scores and genomic distance-based features on fine-mapped eQTL data to predict regulatory SNP-gene links (see [Dorans et al. 2025 Nature Genetics](https://www.nature.com/articles/s41588-025-02220-3)).
+Gradient-boosting framework for linking regulatory variants to target genes using single-cell multiome data and genomic distance.
 
-The pgBoost framework requires single-cell mutiome (RNA-seq + ATAC-seq) data as input. The algorithm will output probabilistic scores for candidate SNP-gene links. See below for the steps to generate pgBoost features from single-cell multiome data and run pgBoost!
+![Static Badge](https://img.shields.io/badge/Nature_Genetics-359471?style=flat&link=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41588-025-02220-3)
+[![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
+
+pgBoost improves SNP-to-gene linking by integrating multiple single-cell multiome linking strategies with genomic distance in a non-linear gradient boosting framework trained on fine-mapped eQTL data.  pgBoost achieves substantially stronger enrichment for validated regulatory links than existing approaches, especially for distal links.
+
+The pgBoost framework requires single-cell mutiome (RNA-seq + ATAC-seq) data as input, and generates probabilistic scores for candidate SNP-gene links as output. See below for the steps to generate pgBoost features from single-cell multiome data and run pgBoost.
 
 <div align="center">
 <img src="https://github.com/elizabethdorans/pgBoost/blob/main/figs/overview_method.jpg" width=75%>
 </div>
-
 
 ## Step 1: Generate constituent scores
 
@@ -21,7 +25,7 @@ Tutorial code to generate linking scores from constituent methods has been provi
 
 After constituent scores have been generated, `prepare_pgBoost_features.ipynb` can be used to generate pgBoost input files. This notebook will generate distance-based features and output the --data_file, --predictor_file, and --drop_duplicates_file inputs needed for the pgBoost script (see below).
 
-## pgBoost.R [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
+## pgBoost.R
 
 pgBoost takes as input a data set of candidate SNP-gene regulatory links x link attributes (peak-gene correlation-based scores from constituent linking methods, distance-based features) and generates consensus linking scores using gradient boosting (in a leave-one-chromosome-out framework).
 
