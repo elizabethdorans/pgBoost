@@ -3,6 +3,7 @@
 Gradient-boosting framework for linking regulatory variants to target genes using single-cell multiome data and genomic distance.
 
 ![Static Badge](https://img.shields.io/badge/Nature_Genetics-359471?style=flat&link=https%3A%2F%2Fwww.nature.com%2Farticles%2Fs41588-025-02220-3)
+
 [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
 
 pgBoost improves SNP-to-gene linking by integrating multiple single-cell multiome linking strategies with genomic distance in a non-linear gradient boosting framework trained on fine-mapped eQTL data.  pgBoost achieves substantially stronger enrichment for validated regulatory links than existing approaches, especially for distal links.
