@@ -2,7 +2,7 @@
 
 Gradient-boosting framework for linking regulatory variants to target genes using single-cell multiome data and genomic distance.
 
-[![Nature Genetics](https://img.shields.io/badge/Nature_Genetics-359471?style=flat)](https://www.nature.com/articles/s41588-025-02220-3)
+[![Nature Genetics](https://img.shields.io/badge/Nature_Genetics-orange?style=flat)](https://www.nature.com/articles/s41588-025-02220-3)
 
 [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
 
