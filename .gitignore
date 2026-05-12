@@ -1,1 +1,10 @@
 .ipynb_checkpoints/
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/staging/
+
+# Local outputs
+results/
+*.log

@@ -1,0 +1,7 @@
+name: pgboost
+channels:
+  - conda-forge
+dependencies:
+  - r-base=4.2
+  - r-argparse
+  - r-xgboost
