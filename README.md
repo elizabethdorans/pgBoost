@@ -3,6 +3,7 @@
 Gradient-boosting framework for linking regulatory variants to target genes using single-cell multiome data and genomic distance.
 
 [![Nature Genetics](https://img.shields.io/badge/Nature_Genetics-2025-orange?style=flat)](https://www.nature.com/articles/s41588-025-02220-3)
+
 [![DOI](https://zenodo.org/badge/788634518.svg)](https://doi.org/10.5281/zenodo.15276307)
 
 pgBoost performs SNP-gene linking by integrating peak-gene scores from multiple single-cell multiome methods with genomic distance in a gradient boosting framework trained on fine-mapped eQTL data. pgBoost achieves stronger enrichment for validated regulatory links than existing approaches, especially for distal links.
@@ -75,7 +76,7 @@ The example files are intentionally small and are not intended to reproduce the 
 | `--LOO_colname` | Name of the column used to group links for the leave-one-out framework, e.g. `chr`, `CHR`, `chrom`, `chromosome`. Default is `chr`. |
 | `--outfile` | Name of tab-delimited file where pgBoost predictions will be saved. Default is `pgboost_predictions.tsv`. |
 | `--seed` | Value to pass to `set.seed()`. Default is `511`. |
-| `--nthread` | Number of threads to use for xgboost. Default is `2`. |
+| `--nthread` | Number of threads to use for xgboost. Default is `1`. |
 
 ## Output
 
