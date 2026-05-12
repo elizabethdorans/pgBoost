@@ -21,7 +21,7 @@ parser$add_argument("--outfile", default = "pgboost_predictions.tsv",
     help = "name of output file for pgBoost predictions")
 parser$add_argument("--seed", default = 511, type = "integer",
     help = "value to pass to set.seed()")
-parser$add_argument("--nthread", default = 2, type = "integer",
+parser$add_argument("--nthread", default = 1, type = "integer",
     help = "number of threads to use for xgboost")
 
 args <- parser$parse_args()
