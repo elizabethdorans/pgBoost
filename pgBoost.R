@@ -190,6 +190,14 @@ for (chromosome in chromosomes) {
     print(head(predictions))
 }
 
+# Add percentile score for each link
+if (nrow(predictions) > 1) {
+    predictions$Percentile <- (rank(predictions$pgBoost, ties.method = "min") - 1) /
+        (nrow(predictions) - 1)
+} else {
+    predictions$Percentile <- 0
+}
+
 # Add promoter links to output
 if (output_promoter_links == TRUE) {
     promoter_links$pgBoost = 1
